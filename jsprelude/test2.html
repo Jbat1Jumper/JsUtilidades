@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="./js/prelude.js" type="text/javascript"></script>
+</head>
+
+<body>
+	<div id="main">
+            <div id="contadorA"></div>
+            <div id="contadorB"></div>
+        </div>
+</body>
+
+<script>
+Contador = new function(){
+    CreateClass(this, "Contador");
+    this.constructor = function(obj, args)
+    {
+        obj.numeroActual = 0;
+        obj.idDiv = args.idDiv;
+        obj.incremento = 1;
+    }
+    
+    this.public.incrementarContador = function () {
+        this.numeroActual += this.incremento;
+    }
+    
+    this.public.imprimirValor = function () {
+        var miDiv = document.getElementById(this.idDiv);
+        miDiv.innerHTML = this.numeroActual;
+        console.log(this.numeroActual);
+    }
+    
+    this.public.setIncremento = function (nuevoInc) {
+        this.incremento = nuevoInc;
+    }
+}
+
+GestorContadores = new function () {
+    CreateClass(this, "GestorContadores");
+    this.constructor = function(obj, args){
+        obj.contadorA = create(Contador, {idDiv: "contadorA"});
+        obj.contadorB = create(Contador, {idDiv: "contadorB"});
+        obj.contadorA.setIncremento(7);
+        obj.contadorB.setIncremento(11);
+    }
+    this.public.step = function () {
+        this.contadorA.incrementarContador();
+        this.contadorB.incrementarContador();
+        this.contadorA.imprimirValor();
+        this.contadorB.imprimirValor();
+    }
+}
+
+gestor = create(GestorContadores);
+
+window.setInterval( function(){ gestor.step(); }, 900);
+
+</script>
+
+</html>

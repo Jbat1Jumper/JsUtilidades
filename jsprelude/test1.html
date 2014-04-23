@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+
+<body>
+	<div id="main"></div>
+</body>
+
+<script>
+
+console.log("> comenzando");
+
+function NewObject() {
+    this.type = ["NewObject"];
+}
+function CreateClass(clas, name)
+{
+    clas.className = name;
+    clas.attr = {};
+    clas.private = {};
+    clas.public = {};
+    clas.parents = [];
+    clas.constructor = function (obj, args) {};
+}
+function create(clas, args) {
+    var obj = new NewObject();
+    if (typeof clas.parents !== "undefined") {
+        clas.parents.forEach(function(parent) {
+            fillFrom(parent, obj);
+        });
+    }
+    fillFrom(clas, obj);
+    clas.constructor(obj, args);
+    return obj;
+}
+function fillFrom(clas, obj) {
+    obj.type.push(clas.className);
+    for (at in clas.attr) {
+        obj[at] = clas.attr[at];
+    }
+    for (f in clas.private) {
+        obj[f] = clas.private[f];
+    }
+    for (f in clas.public) {
+        obj[f] = clas.public[f];
+    }
+}
+function is(type, obj){
+    if ( typeof type.className !== "undefined" )
+        type = type.className;
+    clas = obj.type[obj.type.length-1]
+    return obj !== undefined && obj !== null && clas === type;
+}
+function isinstance(type, obj){
+    if ( typeof type.className !== "undefined" )
+        type = type.className;
+    return obj.type.indexOf(type) !== -1;
+}
+function isFunction(foo) {
+    return (foo.toString().indexOf('function ') !== -1);
+}
+function functionName(foo) {
+    var ret = foo.toString();
+    ret = ret.substr('function '.length);
+    ret = ret.substr(0, ret.indexOf('('));
+    return ret;
+}
+//
+//function Clas(self) {
+//    self.clas = [];
+//    return self;
+//}
+//function A(self) {
+//    self = Clas(self);  // herencia
+//    self.clas.push("A");
+//    
+//    self.orange = "naranja";
+//    
+//    self.salute = function() {
+//        console.log("saludos, mi color favorito es el " + this.orange);
+//    }
+//    self.eatApple = function(apple){
+//        console.log("yumm, imma eating a " + apple.toString());
+//    }
+//    
+//    return self;
+//}
+
+//
+//function B(self) {
+//    self = A(self);  // herencia
+//    self.clas.push("B");
+//    
+//    self.red = "rojo";
+//    
+//    self.salute = function() {
+//        console.log("saludos comarada, a mi me gusta el " + this.red);
+//    }
+//    return self;
+//}
+
+A = new function(){
+    CreateClass(this, "A");
+    this.attr.someAAttr = 40;
+    
+    this.constructor = function(obj, args){
+        // this. referenciaria aca a la clase, y obj. al objeto que se esta construyendo
+        obj.someAAttr = obj.someAAttr + 2;
+    }
+    this.private.someAFoo = function (){
+        console.log("shhh, this is some a attr " + this.someAAttr.toString());
+    }
+}
+
+B = new function(){
+    CreateClass(this, "B");
+    
+    this.attr.someBAttr = 12;
+    
+    this.constructor = function(obj, args){
+        self.someBAttr = 13;
+    }
+    
+    this.public.someBFoo = function ()
+    {
+        console.log("this is some b attr " + this.someBAttr.toString());
+    }
+}
+
+C = new function(){
+    CreateClass(this, "C");
+    this.parents = [A, B];
+    
+    this.attr.color = "blue";
+    this.attr.lastNumber = 1;
+    this.attr.nonZero = 0;
+    
+    this.constructor = function(self, args){
+        B.constructor(self);
+        
+        self.someBAttr = 15;
+        
+        if (typeof args !== "undefined") {
+            if (args.hasOwnAttr("value")) {
+                self.nonZero = args.value;
+            }
+        }
+    }
+    
+    this.public.salute = function(){
+        console.log("saludos comarada, a mi me gusta el " + this.color);
+    }
+    
+    this.public.eatApple = function(apple){
+        console.log("yumm, imma eating a " + apple.toString());
+    }
+    
+    this.private.calculatePowersOf2 = function(){
+        this.lastNumber = this.lastNumber * 2;
+        console.log("this is secret but the next power of 2 is " + this.lastNumber.toString());
+    }
+}
+
+var a, b, c;
+
+// MAIN
+function main() {
+    console.log("> corriendo pruebas");
+    
+    a = create(A);
+    b = create(B);
+    c = create(C);
+    
+    console.log(a);
+    console.log("a.type");
+    console.log(a.type);
+    console.log(b);
+    console.log("b.type");
+    console.log(b.type);
+    console.log(c);
+    console.log("c.type");
+    console.log(c.type);
+}
+
+//main();
+
+
+</script>
+
+</html>
