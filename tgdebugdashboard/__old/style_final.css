@@ -1,0 +1,56 @@
+.tabLabel
+{
+	font-size: 20px !important;
+}
+
+.fuenteGrande
+{
+	font-size: 20px !important;
+}
+
+.fuenteMuyGrande
+{
+	font-size: 30px !important;
+}
+
+.container > h4
+{
+	padding: 2px;
+	margin: 2px;
+}
+
+.container
+{
+	margin: 2px;
+	float: left;
+}
+
+.container > .content
+{
+
+}
+
+ul
+{
+	padding-left: 10px;
+	margin-left: 0px;
+}
+
+
+.terminal > .content
+{
+	font-style: normal;
+	color: gray;
+	padding: 3px;
+	padding-left: 5px;
+	border-style: solid;
+	border-color: gray;
+	border-width: 1px;
+	background-color: black;
+	height: 80%
+}
+
+#tg_left_panel
+{
+	width: 200px;
+}

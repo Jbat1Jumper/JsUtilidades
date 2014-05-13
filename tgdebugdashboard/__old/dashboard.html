@@ -1,0 +1,109 @@
+<!DOCTYPE HTML>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Debug Dashboard</title>
+		<link rel="stylesheet" href="./style2.css" media="screen">
+		<link rel="stylesheet" href="./style.css" media="screen">
+		<link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/dojo/1.9.2/dijit/themes/claro/claro.css" media="screen">
+		<link rel="stylesheet" href="./style_final.css" media="screen">
+	</head>
+	<body class="claro">
+		<div id="appLayout" class="demoLayout" data-dojo-type="dijit/layout/BorderContainer" data-dojo-props="design: 'headline'">
+			<div id="tg_tab_container" data-dojo-type="dijit/layout/TabContainer" data-dojo-props="region: 'center', tabPosition: 'bottom'">
+				
+				<div id="tg_tab_screen" class="tg_tab" data-dojo-type="dijit/layout/ContentPane" title="Screen">
+					<div id="tg_screen_tests" class="container edgePanel" data-dojo-type="dijit/layout/ContentPane" >
+						<h4>Test</h4>
+						<div class="content">
+							<br/>
+							<button>Screen test</button>
+						</div>
+					</div>
+					<div id="tg_screen_controls" class="container edgePanel" data-dojo-type="dijit/layout/ContentPane" >
+						<h4>Controls</h4>
+						<div class="content">
+							<br/>
+							<button>Refresh kernel info</button>
+							<br/><br/>
+							<button>Calibrate Touch</button>
+						</div>
+					</div>
+				</div>
+
+				<div id="tg_tab_io" class="tg_tab" data-dojo-type="dijit/layout/ContentPane" title="I/O">
+					<div id="tg_keys" class="container edgePanel" data-dojo-type="dijit/layout/ContentPane" >
+						<h4>Keys</h4>
+						<div class="content">
+						</div>
+					</div>
+					<div id="tg_doors" class="container edgePanel" data-dojo-type="dijit/layout/ContentPane" >
+						<h4>Doors</h4>
+						<div class="content">
+						</div>
+					</div>
+					<div id="tg_buttons" class="container edgePanel" data-dojo-type="dijit/layout/ContentPane" >
+						<h4>Buttons</h4>
+						<div class="content">
+						</div>
+					</div>
+					<div id="tg_lights" class="container edgePanel" data-dojo-type="dijit/layout/ContentPane" >
+						<h4>Lights</h4>
+						<div class="content">
+						</div>
+					</div>
+				</div>
+
+				<div id="tg_tab_printer" class="tg_tab" data-dojo-type="dijit/layout/ContentPane" title="Printer">
+				</div>
+
+				<div id="tg_tab_sas" class="tg_tab" data-dojo-type="dijit/layout/ContentPane" title="SAS">
+
+					<div id="tg_sas_terminal" class="container terminal edgePanel" data-dojo-type="dijit/layout/ContentPane" >
+						<h4>Terminal</h4>
+						<div class="content">
+							
+						</div>
+					</div>
+				</div>
+
+				<div id="tg_tab_bill" class="tg_tab" data-dojo-type="dijit/layout/ContentPane" title="Bill Acceptor">	
+
+					<div id="tg_bill_terminal" class="container terminal edgePanel" data-dojo-type="dijit/layout/ContentPane" >
+						<h4>Terminal</h4>
+						<div class="content">
+							
+						</div>
+					</div>				
+				</div>
+
+			</div>
+
+			<div class="edgePanel fuenteMuyGrande" data-dojo-type="dijit/layout/ContentPane" 
+					data-dojo-props="region: 'top'">
+				Debug Dashboard
+			</div>
+
+			<div  id="tg_left_panel" class="edgePanel" data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region: 'left'">
+				<div id="tg_info">
+				</div>
+			</div>
+		</div>
+		<!-- load dojo -->
+		<script src="./dojo/dojo/dojo.js"></script>
+		<!-- load web socket 
+		<script src="./web_socket/web_socket.js"></script> -->
+		<!-- load logic -->
+		<script src="./tg_connector.js"></script>
+		<script src="./logger.js"></script>
+		<script src="./config.js"></script>
+
+		<script src="./components/left_panel.js"></script>
+		<script src="./components/tab_screen.js"></script>
+		<script src="./components/tab_io.js"></script>
+		<script src="./components/tab_printer.js"></script>
+		<script src="./components/tab_sas.js"></script>
+		<script src="./components/tab_bill.js"></script>
+		<script src="./logic.js"></script>
+	</body>	
+</html>

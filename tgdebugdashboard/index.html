@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Ember Starter Kit</title>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+  </head>
+  <body>
+    <script type="text/x-handlebars">
+      <div class="page-header">
+        <h2>Debug Dashboard <small>_</small></h2>
+      </div>
+      <nav class="navbar nav navbar-static-top" role="navigation">
+        <ul class="nav nav-tabs nav-justified">
+          {{#link-to "screen_tab" tagName="li" href=false}}
+          <a {{bind-attr href="view.href"}}>Screen</a>
+          {{/link-to}}
+          {{#link-to "bill_acceptor_tab" tagName="li" href=false}}
+          <a {{bind-attr href="view.href"}}>Bill Acceptor</a>
+          {{/link-to}}
+          {{#link-to "printer_tab" tagName="li" href=false}}
+          <a {{bind-attr href="view.href"}}>Printer</a>
+          {{/link-to}}
+          {{#link-to "io_tab" tagName="li" href=false}}
+          <a {{bind-attr href="view.href"}}>I/O</a>
+          {{/link-to}}
+          {{#link-to "sas_tab" tagName="li" href=false}}
+          <a {{bind-attr href="view.href"}}>SAS</a>
+          {{/link-to}}
+        </ul>
+      </nav>
+      <div class="tab-content">
+        {{outlet}}
+      </div>
+    </script>
+    <script type="text/x-handlebars" id="index">
+      <ul>
+        {{#each item in model}}
+        <li>{{item}}</li>
+        {{/each}}
+      </ul>
+    </script>
+    <script src="js/libs/jquery-1.10.2.js"></script>
+    <script src="js/libs/handlebars-1.1.2.js"></script>
+    <script src="js/libs/ember-1.5.1.js"></script>
+    <script src="js/libs/bootstrap.min.js"></script>
+    <script src="js/resolver.js"></script>
+    <script src="js/app.js"></script>
+    <!-- to activate the test runner, add the "?test" query string parameter -->
+    <script src="tests/runner.js"></script>
+  </body>
+</html>
